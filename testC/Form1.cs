@@ -1,40 +1,45 @@
+using System.Security.Cryptography.X509Certificates;
+using System.Windows.Forms;
+
 namespace testC
 {
     public partial class Form1 : Form
     {
+
+        readonly Random r;
+        int punkty;
         public Form1()
         {
             InitializeComponent();
+            r = new Random();
+            punkty = 0;
+            timer1.Start();
         }
 
-        private void ButtonClicked(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            //Application.Exit();
+            MoveButton();
+            punkty = 0;
+            label1.Text = "Punkty: " + punkty.ToString();
+        }
 
-            //szerokoœæ okna aplikacji
-            int windowWidth = Size.Width;
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MoveButton();
+            punkty++;
+            label1.Text = "Punkty: " + punkty.ToString();
+            timer1.Stop();
+            timer1.Start();
+        }
 
-            //wyskoœæ okna aplikacji
-            int windowHeight = Size.Height;
-
-            windowWidth -= button1.Width;
-            windowHeight -= button1.Height;
-
-            //instalizacja generatora liczb losowych 
-            Random rdn = new Random();
-
-            //losowa odleg³oœæ od lewej - nie wiêcej ni¿ szerokoœæ okna
-            int randomLeft = rdn.Next(windowWidth);
-
-
-            int randomTop = rdn.Next(windowHeight);
-
-            //przesuwamy guzik
-            //location musi byæ przekazany jako punkt na ekranie
-            Point topLeftCorner = new Point(randomLeft, randomTop);
-            //centerButton to nazwa (atrybut Name) mojego guzika
-            button1.Location = topLeftCorner;
-
+        private void MoveButton()
+        {
+            int maxX = this.Size.Width - button1.Size.Width - 50;
+            int maxY = this.Size.Height - button1.Size.Height - 50;
+            Point p = new Point();
+            p.X = r.Next(12, maxX);
+            p.Y = r.Next(12, maxY); 
+            button1.Location = p;
         }
     }
 }

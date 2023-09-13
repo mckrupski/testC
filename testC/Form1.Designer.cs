@@ -28,35 +28,52 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            timer1 = new System.Windows.Forms.Timer(components);
             button1 = new Button();
+            label1 = new Label();
             SuspendLayout();
+            // 
+            // timer1
+            // 
+            timer1.Interval = 10000;
+            timer1.Tick += timer1_Tick;
             // 
             // button1
             // 
-            button1.BackColor = SystemColors.HotTrack;
-            button1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.ForeColor = SystemColors.ControlText;
-            button1.Location = new Point(381, 209);
+            button1.Location = new Point(304, 115);
             button1.Name = "button1";
-            button1.Size = new Size(171, 92);
+            button1.Size = new Size(75, 23);
             button1.TabIndex = 0;
-            button1.Text = "button";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += ButtonClicked;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(23, 425);
+            label1.Name = "label1";
+            label1.Size = new Size(38, 15);
+            label1.TabIndex = 1;
+            label1.Text = "label1";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(898, 477);
+            Controls.Add(label1);
             Controls.Add(button1);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
+        private System.Windows.Forms.Timer timer1;
         private Button button1;
+        private Label label1;
     }
 }
